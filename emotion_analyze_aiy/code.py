@@ -54,9 +54,11 @@ def main():
                 global text, duration
                 start = time.monotonic()
 
-                # 텍스트로 인식
-                text = client.recognize(language_code='ko-KR')
-                duration = time.monotonic() - start
+                while text is None:
+
+                    # 텍스트로 인식
+                    text = client.recognize(language_code='ko-KR')
+                    duration = time.monotonic() - start
 
             # 녹음하면서
             record_file(AudioFormat.CD, filename=args.filename, wait= wait, filetype='wav')
@@ -100,10 +102,16 @@ def main():
             voice.extract(quality, emotionProbabilities)
 
             if quality.valid:
-                print ("Neutral: %.3f" % emotionProbabilities.neutrality)
-                print ("Happy: %.3f" % emotionProbabilities.happiness)
-                print ("Sad: %.3f" % emotionProbabilities.sadness)
-                print ("Angry: %.3f" % emotionProbabilities.anger)
+                # print ("Neutral: %.3f" % emotionProbabilities.neutrality)
+                # print ("Happy: %.3f" % emotionProbabilities.happiness)
+                # print ("Sad: %.3f" % emotionProbabilities.sadness)
+                # print ("Angry: %.3f" % emotionProbabilities.anger)
+
+                if emotionProbabilities.happiness > emotionProbabilities.sadness + emotionProbabilities.anger:
+                    print('@@@긍정')
+                else:
+                    print('@@@부정')
+
                 # print ("Fear: %.3f" % emotionProbabilities.fear)
                 # fear 는 무시하도록 하자.
 
