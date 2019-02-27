@@ -5,6 +5,8 @@
 - json 파일만들고 경로 export 해주기
 	-  `~/.profile` 에 `export GOOGLE_APPLICATION_CREDENTIALS="/home/pi/[파일이름].json"` 추가하면 돼요
 
+- `pip3 install google-assistant-library`
+
  
 - rasbian 환경 언어 한글로 되어있어야 할듯..아마..
 
