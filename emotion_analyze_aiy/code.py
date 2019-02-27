@@ -150,18 +150,14 @@ def main():
                     color = (255,255,0)
                     leds.update(Leds.rgb_pattern(color))
                     time.sleep(1)
-                    # audio.play_wav('laugh.wav')
+                    # play_wav('laugh.wav')
                 else:       
                     leds.pattern = Pattern.breathe(1000)
                     color = (102,140,255)
                     leds.update(Leds.rgb_on(color))
                     time.sleep(1)
-                    # audio.play_wav('people-cheering.wav')
+                    # play_wav('people-cheering.wav')
 
-
-            # print('Playing...')
-            # play_wav(args.filename)
-            # print('Done.')
 
 if __name__ == '__main__':
     main()
