@@ -1,8 +1,11 @@
 # 쓰기 전에 필요한 것
 
--`pip3 install --upgrade google-cloud-language` : python3 사용하고 있어서 pip3로 해줘야함
-- [링크](https://cloud.google.com/natural-language/docs/reference/libraries?hl=ko#client-libraries-install-python) :Natural Language API Client Libraries credential 다운.json 파일만들고 경로 export 해주기
+- `pip3 install --upgrade google-cloud-language` : python3 사용하고 있어서 pip3로 해줘야함
+- [링크](https://cloud.google.com/natural-language/docs/reference/libraries?hl=ko#client-libraries-install-python) : Natural Language API Client Libraries credential 다운.
+- json 파일만들고 경로 export 해주기
+	-  `~/.profile` 에 `export GOOGLE_APPLICATION_CREDENTIALS="/home/pi/[파일이름].json"` 추가하면 돼요
 
+ 
 - rasbian 환경 언어 한글로 되어있어야 할듯..아마..
 
 - 지연님 예지님 [오픈 보카투리](https://wolfpaulus.com/embedded/emotion-lamp/) 받으셔야함니당..

@@ -45,6 +45,7 @@ def main():
 
     with Board() as board:
 
+
         while True:
 
             print('말해보자.')
@@ -77,14 +78,14 @@ def main():
             print('Text: {}'.format(text))
             print('Sentiment: {}, {}'.format(sentiment.score, sentiment.magnitude))
 
-            ##################### 나중에 몇번 실험해보자 ####################
+            ##################### 실험후 바꿔도 됨 ####################
             pos_standard = 0.6
             neg_standard = 0.2
-            magnitude_standard = 0.3
+            # magnitude_standard = 0.1
 
             # text sentiment analysis is enough
-            if (sentiment.magnitude > magnitude_standard and sentiment.score < neg_standard 
-                    or sentiment.magnitude > magnitude_standard and sentiment.score > pos_standard) :
+            if (sentiment.score < neg_standard 
+                    or sentiment.score > pos_standard) :
                if sentiment.score < neg_standard:
                     emotion=False
                     print("@@@negative")
@@ -142,17 +143,19 @@ def main():
                 continue
 
             # 여기서 부터 반응.
-            # board.led.state = Led.ON
+            
             with Leds() as leds:
                 if emotion is True:
-                    leds.pattern = Pattern.blink(50)
+                    leds.pattern = Pattern.blink(1000)
                     color = (255,255,0)
                     leds.update(Leds.rgb_pattern(color))
+                    time.sleep(1)
                     # audio.play_wav('laugh.wav')
                 else:       
                     leds.pattern = Pattern.breathe(1000)
                     color = (102,140,255)
                     leds.update(Leds.rgb_on(color))
+                    time.sleep(1)
                     # audio.play_wav('people-cheering.wav')
 
 
