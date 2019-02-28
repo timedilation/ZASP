@@ -75,6 +75,7 @@ def listen_me():
     tts_client = texttospeech.TextToSpeechClient()
 
     pos_wavs =[]
+    neut_wavs =[]
     neg_wavs =[]
     intro_wavs=[]
 
@@ -82,6 +83,11 @@ def listen_me():
     pos_wavs.append(text_to_audio(tts_client, '대박', '1.wav'))
     pos_wavs.append(text_to_audio(tts_client, '우와', '2.wav'))
     pos_wavs.append(text_to_audio(tts_client, '하하', '3.wav'))
+
+    neut_wavs.append(text_to_audio(tts_client, '응', '10.wav'))
+    neut_wavs.append(text_to_audio(tts_client, '그렇구나', '11.wav'))
+    neut_wavs.append(text_to_audio(tts_client, '그래서?', '12.wav'))
+    neut_wavs.append(text_to_audio(tts_client, '응응', '13.wav'))
 
     neg_wavs.append(text_to_audio(tts_client, '저런', '4.wav'))
     neg_wavs.append(text_to_audio(tts_client, '힘내', '5.wav'))
@@ -182,18 +188,16 @@ def listen_me():
 
                     wave_score = emotionProbabilities.happiness - (emotionProbabilities.sadness + emotionProbabilities.anger)
 
-                    if wave_score > 0:
+
+                    if wave_score > 0 and sentiment.score > 0.4:
                         print('@@@긍정')
                         emotion=True
-                    else:
+                    elif wave_score < 0 and sentiment.score < 0.4:
                         print('@@@부정')
                         emotion=False
 
-            # text 분석 모호하고 wave 분석 실패했을때 (주로 목소리 짧아서)
-            if emotion is None:
-                print('please say again')
-                # 아님 중립적 반응 넣어도 됨.
-                continue
+                    # text 스코어와 wave 스코어가 불일치 할때는 중립반응 (emotion = None)
+
 
             # 여기서 부터 반응.
             
@@ -205,7 +209,7 @@ def listen_me():
                     leds.update(Leds.rgb_pattern(color))
                     time.sleep(1)
                     # play_wav('laugh.wav')
-                else:     
+                elif emotion is False:     
                     play_wav(random.choice(neg_wavs))
                     leds.pattern = Pattern.breathe(1000)
                     color = (102,140,255)
@@ -213,11 +217,20 @@ def listen_me():
                     time.sleep(1)
                     # play_wav('people-cheering.wav')
 
+                # 중립 리액션
+                else:
+                    play_wav(random.choice(neut_wavs))
+                    leds.pattern = Pattern.blink(5)
+                    color = (230,0,115)
+                    leds.update(Leds.rgb_on(color))
+                    time.sleep(1)
+
+
 
 def main():
 
     with Board() as board:
-        assistant = AssistantServiceClientWithLed(board,'ko-KR', 70)
+        assistant = AssistantServiceClientWithLed(board,'ko-KR', 100)
         while True:
             logging.info('Press button to start conversation...')
             board.button.wait_for_press()
