@@ -17,26 +17,26 @@ public class Main {
 		int reach[]=new int[length];// reach[i]: i번째 칸에 도달할 수 있으면 1, 없으면 0
 		
 		//시간 복잡도 O(N^2)
-        reach[0]=1;
+        	reach[0]=1;
 		for(int idx=0;idx<length;idx++) {
 			//도달 할 수 있는 경우에만 체크해야 하는 것 빼먹지 말자
 			if(reach[idx]==1){// list에 원소 하나있을 때 주의
-			    for(int jump=1;jump<=list[idx];jump++) {
-			    	if(idx+jump<length)
-				    	reach[idx+jump]=1;
-			    }
-            }
+		    		for(int jump=1;jump<=list[idx];jump++) {
+			    		if(idx+jump<length)
+				    		reach[idx+jump]=1;
+		    		}
+        		}
 		}
 		
 		boolean isPossible=false;
 		if(reach[length-1]==1)
 			isPossible=true;
-		
+			
 		return isPossible;
 	}
 	public static int minJump(LinkedList<Integer> list) {
 		int jump=0;
-		
+		// 더 생각해보기	
 		
 		return jump;
 	}
