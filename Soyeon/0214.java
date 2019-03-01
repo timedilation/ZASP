@@ -33,7 +33,7 @@ public class Main {
 		sameDepth.add(root);
 		answer.add(sameDepth);
 
-    //시간 복잡도 O(N^2) ??
+                //시간 복잡도 O(N^2) ??
 		while(true) {
 			LinkedList<Node> nextDepth=new LinkedList<Node>();
 			for(Node d:sameDepth) {
