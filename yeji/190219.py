@@ -1,10 +1,10 @@
-nums=list(map(int,input().split()))
-target=int(input())
-canbelist=[]
-for i in range(1,target//2+1):
-        item=[i,target-i]
-        if i==target-i and nums.count(i) == 2:
-            print( [index for index, value in enumerate(nums) if value == i] )
-        elif item[0] in nums and item[1] in nums:
-            print( [nums.index(item[0]),nums.index(item[1])] )
-        #else: return None
+class Solution:
+    def twoSum(self, nums: 'List[int]', target: 'int') -> 'List[int]':
+        for i in range(0,len(nums)):
+            if target-nums[i]==nums[i]:
+                if nums.count(nums[i])==2:
+                    return [index for index, value in enumerate(nums) if value == nums[i]]
+                else: continue
+            elif target-nums[i] in nums:
+                return [i,nums.index(target-nums[i])]
+        return None
