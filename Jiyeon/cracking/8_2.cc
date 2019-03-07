@@ -12,23 +12,30 @@ int grid[N][N] = {
 };
 
 stack<pair<int,int> > way;
+int isVisited[N][N] = {};
 
 bool findWay(int r, int c)
 {
-    bool find = false;
+    isVisited[r][c] = 1;
     if((r>4) || (c>4))
         return false;
-    else if((r==4) && (c==4)) {
+    if(grid[r][c] == 0)
+        return false;
+    if((r==4) && (c==4)) {
         way.push(pair<int,int>(r,c));
         return true;
     }
-    else if((grid[r+1][c]==1) && findWay(r+1,c)) {
-        way.push(pair<int,int>(r,c));
-        return true;
+    if(isVisited[r+1][c] == 0) {
+        if(findWay(r+1,c)) {
+            way.push(pair<int,int>(r,c));
+            return true;
+        }
     }
-    else if((grid[r][c+1]==1) && findWay(r,c+1)) {
-        way.push(pair<int,int>(r,c));
-        return true;
+    if(isVisited[r][c+1] == 0) {
+        if(findWay(r,c+1)) {
+            way.push(pair<int,int>(r,c));
+            return true;
+        }
     }
     return false;
 }
