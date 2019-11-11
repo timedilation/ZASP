@@ -9,4 +9,5 @@ ZASP: Algorithm Studying Project
 ## Record
 | Date | 소연 | 솔비 | 예지 | 지연 |
 |:---:|:---:|:---:|:---:|:---:|
-|11.10|     | :heavy_check_mark: |     |     |
+|11.10|:bomb:| :heavy_check_mark: | pass |:bomb:|
+|11.17| | | | |
