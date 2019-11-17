@@ -1,3 +1,4 @@
+from copy import deepcopy
 print("hello ")
 #문제 설명
 #리스트가 주어졌을 때
@@ -11,7 +12,7 @@ all = []
 for i in range(len(inp)):
     temp = set([inp[i]])
     sum +=1
-    all.append(temp)
+    all.append(deepcopy(temp))
     print('one',all)
     #print('current', temp,sum)
     j = i
@@ -20,7 +21,7 @@ for i in range(len(inp)):
         #print('j',j)
         if inp[j] not in temp:
             temp.add(inp[j])
-            all.append(temp)
+            all.append(deepcopy(temp))
             print('add',all)
             sum += 1
             #print('add',temp,sum)
