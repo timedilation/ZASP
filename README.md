@@ -11,4 +11,6 @@ ZASP: Algorithm Studying Project
 |:---:|:---:|:---:|:---:|:---:|
 |11.10|:bomb:| :heavy_check_mark: | pass |:bomb:|
 |11.17|:heavy_check_mark:|:heavy_check_mark: |:heavy_check_mark: |:bomb:|
-|sum|4000|0|0|8000|
+|11.24|:bomb:|:bomb: |:bomb: |:bomb:|
+|12.1|| | | |
+|sum|8000|4000|4000|12000|
