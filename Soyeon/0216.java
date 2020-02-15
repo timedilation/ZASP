@@ -1,4 +1,4 @@
-#codeJAM IO WOMAN 2020 1번
+//codeJAM IO WOMAN 2020 1번
 import java.util.*;
 public class Solution {
 
