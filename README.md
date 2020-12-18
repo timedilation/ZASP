@@ -6,3 +6,4 @@ ZASP: Algorithm Studying Project
 > - 이름: 계획 으로 등록해주세요
 
 - 지연: 매일 codejam kickstart 한문제씩  
+- 솔비: 매일 leetcode 한문제씩😎
