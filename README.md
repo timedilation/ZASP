@@ -7,3 +7,4 @@ ZASP: Algorithm Studying Project
 
 - 지연: 매일 codejam kickstart 한문제씩  
 - 솔비: 매일 leetcode 한문제씩😎
+- 소연: 매일 leetcode 알고리즘 or hackerrank sql 한문제
