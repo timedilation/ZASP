@@ -9,7 +9,8 @@ using namespace::std;
 * 역시 N을 키울 때는 작을 때와는 전혀 다른 로직으로 구현해야한다.. 그 핵심 되는 변수를 잘 못찾아내고 있는듯
 * short 통과 long 타임아웃. 귀찮아서 그냥 이진탐색 구현 안해서 그랬나봄..
 * 졸려서 낼 수정하고 다시 올리기
-*
+* -> 이진탐색 구현하는데 더걸림.. 양쪽 경계를 명확히 안세워서 첨에 그냥 left=target했다가 꼬여버림
+* 시간복잡도 O(log(10^9)*N)
 */
 
 
@@ -29,21 +30,24 @@ int main()
             prevM = currM;
         }
         
-        int minDiff, ksum;
-        for(minDiff=1; minDiff <= 1000000000; minDiff++) {
+        int ksum, left=1, right=1000000000, target;
+        while(left != right) {
+            int oldtarget = target;
+            target = left + (right-left)/2;
             ksum = 0;
             vector<int>::iterator diff;
             for(diff = initialDiffs.begin(); diff != initialDiffs.end(); diff++) {
-                ksum += ((*diff + minDiff-1)/minDiff - 1);
-                if(ksum > K)
+                ksum += ((*diff + target-1)/target- 1);
+                if(ksum > K) {
+                    left = target+1;
                     break;
+                }
             }
-            if(ksum <= K)
-                break;
+            if(ksum <= K) {
+                right = target;
+            }
         }
         
-        
-        
-        cout << "Case #" << tc << ": " << minDiff << endl;
+        cout << "Case #" << tc << ": " << left << endl;
     }
 }
