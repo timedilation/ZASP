@@ -24,14 +24,15 @@ fun main(args: Array<String>) {
 
 
 }
-
+// create Array of Dot, with x coordinate sorted with ascending order
 fun CreateDots(num: Int) : Array<Dot> {
 	var dots : Array<Dot> = Array<Dot>(num, {Dot()});
-	val xList = (0..num*4).shuffled().take(num)
-	val yList = (0..num*4).shuffled().take(num)
+	var xArray = (0..num*4).shuffled().take(num).toTypedArray()
+	xArray.sort()
+	val yArray = (0..num*4).shuffled().take(num).toTypedArray()
 	for (i in 0..num-1) {
-		dots[i].x = xList[i]
-		dots[i].y = yList[i]
+		dots[i].x = xArray[i]
+		dots[i].y = yArray[i]
 	}
 	return dots
 }
