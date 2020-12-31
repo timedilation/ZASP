@@ -25,12 +25,16 @@ fun main(args: Array<String>) {
 	}
 	val numDots: Int = args[0].toInt()
 
+	// Create n random dots, with x coordinate sorted
 	var dotArray: Array<Dot> = CreateDots(numDots)
+	// print all dots
 	println(numDots.toString() + " dots created:")
 	for (i in 0..numDots-1) {
 		println("[" + dotArray[i].x + ", " + dotArray[i].y + "]")
 	}
+	println()
 
+	// Find convex hull among the dots
 	val lineList = convexhull(dotArray)
 	println(lineList.size.toString() + " lines created:")
 	for (line in lineList) {
@@ -51,6 +55,10 @@ fun CreateDots(num: Int) : Array<Dot> {
 	return dots
 }
 
+/*
+* 
+*
+*/
 fun convexhull(dots: Array<Dot>): MutableList<Line> {
 	val dotsPair = separatePoints(dots, dots[0], dots[dots.size-1])
 	val lineList: MutableList<Line> = mutableListOf()
