@@ -1,3 +1,7 @@
+# 몸풀기 스택 문제
+# 분류가 스택이지만 스택을 쓰지는 않는다
+# 복잡도: O(n)
+
 parentheses = input()
 stacked = 0
 n = 0
