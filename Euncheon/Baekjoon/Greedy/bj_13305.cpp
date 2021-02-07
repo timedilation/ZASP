@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-char buf[200010];
 int main(void){
     int N;
     long long sum = 0;
