@@ -19,13 +19,14 @@ int dfs_with_bitmask(int num_of_works, int left_works, int bitmask,
     // }
     // printf("--------\n");
     
-    if (left_works < 0){
+    if (left_works <= 0){
         // end of recursion
         return 0;
     }
-    if (dp[left_works][bitmask]) {
+    int curr_idx = left_works-1;
+    if (dp[curr_idx][bitmask]) {
         // already computed
-        return dp[left_works][bitmask];
+        return dp[curr_idx][bitmask];
     }
 
     int result = INT_MAX;
@@ -33,12 +34,12 @@ int dfs_with_bitmask(int num_of_works, int left_works, int bitmask,
         if(not (bitmask & (1 << i))) {
             bitmask |= (1 << i);
             result = min(result, 
-                        dfs_with_bitmask(num_of_works, left_works-1, bitmask, costs, dp) + costs[left_works][i]);
+                        dfs_with_bitmask(num_of_works, left_works-1, bitmask, costs, dp) + costs[curr_idx][i]);
             bitmask &= ~(1 << i);
         }
     }
 
-    dp[left_works][bitmask] = result;
+    dp[curr_idx][bitmask] = result;
     return result;
 }
 
@@ -56,7 +57,7 @@ int main(void) {
     }
 
     int initial_bitmask = 0;
-    printf("%d", dfs_with_bitmask(num_of_work, num_of_work-1, initial_bitmask, costs, dp));
+    printf("%d", dfs_with_bitmask(num_of_work, num_of_work, initial_bitmask, costs, dp));
 
     return 0;
 }

@@ -5,7 +5,8 @@ using namespace std;
 int main(void) {
     int len_of_series, num_of_questions;
     scanf("%d", &len_of_series);
-    vector<int> series(2000), start, end;
+    vector<int> series(2000);
+    int start, end;
     vector<vector<bool> > palindrome(len_of_series, vector<bool>(len_of_series, false));
 
     for (int i = 0; i < len_of_series; i++){
