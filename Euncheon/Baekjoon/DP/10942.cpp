@@ -2,38 +2,40 @@
 #include <vector>
 using namespace std;
 
-int main(void) {
-    int len_of_series, num_of_questions;
-    scanf("%d", &len_of_series);
-    vector<int> series(2000);
-    int start, end;
-    vector<vector<bool> > palindrome(len_of_series, vector<bool>(len_of_series, false));
-
-    for (int i = 0; i < len_of_series; i++){
-        scanf("%d", &series[i]);
+void check_palindromes(vector<int> &nums, vector<vector<bool> > &dp) {
+    int N = nums.size();
+    for (int i = 0; i < N; i++) {
+        dp[i][i] = true;
     }
-
-    for (int dif = 0; dif < len_of_series; dif++) {
-        for (int start = 0; start + dif < len_of_series; start++) {
+    for (int i = 0; i < N-1; i++){
+        dp[i][i+1] = (nums[i] == nums[i+1]);
+    }
+    for (int dif = 2; dif < N; dif++) {
+        for (int start = 0; start + dif < N; start++) {
             int end = start + dif;
-            if (start == end) {
-                palindrome[start][end] = true;
-            }
-            else if (start + 1 == end) {
-                palindrome[start][end] = (series[start] == series[end]);
-            }
-            else {
-                palindrome[start][end] = 
-                    (series[start] == series[end]) && palindrome[start+1][end-1];
+            if (dp[start+1][end-1]) {
+                dp[start][end] = (nums[start] == nums[end]);
             }
         }
     }
-    
+}
+
+int main(void) {
+    int num_of_nums, num_of_questions, start, end;
+    scanf("%d", &num_of_nums);
+    vector<int> nums(num_of_nums);
+    vector<vector<bool> > is_palindrome(num_of_nums, vector<bool>(num_of_nums, false));
+    for (int i = 0; i < num_of_nums; i++) {
+        scanf("%d", &nums[i]);
+    }
+
+    check_palindromes(nums, is_palindrome);
+
     scanf("%d", &num_of_questions);
-    for (int i = 0; i < num_of_questions; i++){
+    for (int i = 0; i < num_of_questions; i++) {
         scanf("%d %d", &start, &end);
-        printf("%d\n", palindrome[start-1][end-1]);
+        printf("%c\n", is_palindrome[start-1][end-1] ? '1' : '0');
     }
     
-    return 0;   
+    return 0;
 }
