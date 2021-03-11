@@ -9,6 +9,10 @@ public:
     }
     string mostCommonWord(string paragraph, vector<string>& banned) {
         map<string, int> vocabulary;
+        set<string> banned_set;
+        for (string b : banned) {
+            banned_set.insert(b);
+        }
         const string delimiters{" !?',;."};
         size_t begin = 0, pos = 0;
         
@@ -19,14 +23,7 @@ public:
             pos = paragraph.find_first_of(delimiters, begin+1);
             string temp_string = paragraph.substr(begin, pos-begin);
             // cout << begin << " "<< pos << " "<< temp_string << endl; //erase
-            bool is_banned = false;
-            for (string s : banned) {
-                if (s == temp_string) {
-                    is_banned = true;
-                    break;
-                }
-            }
-            if (is_banned) {
+            if ((banned_set.find(temp_string) != banned_set.end())) {
                 continue;
             }
             map<string, int>::iterator it = vocabulary.find(temp_string);
