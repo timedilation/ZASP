@@ -1,5 +1,7 @@
 # 자물쇠와 열쇠
-
+# 푸는 데 걸린 시간: 1시간 14분
+# 확장된 보드?를 만드는 아이디어 생각하는 게 오래 걸렸고
+# 파이썬 이차원 리스트 슬라이싱 방법이 헷갈렸다.
 def rotate_right(key):
     M = len(key)
     result = [[0 for col in range(M)] for row in range(M)]
